@@ -1,0 +1,17 @@
+<div class="sis_ft" 
+  line="{{default line '1'}}"
+  {{#if fontSize}} fontSize="{{fontSize}}"{{/if}}
+  {{#if (or color fontWeight alignment padding style)}}
+    style="{{#if color}}--font-color: {{color}};{{/if}}
+          {{#if fontWeight}} font-weight: {{fontWeight}};{{/if}}
+          {{#if alignment}} text-align: {{alignment}};{{/if}}
+          {{#if padding}} padding: {{padding}};{{/if}}
+          {{#if style}} {{style}}{{/if}}"
+  {{/if}}
+>
+  {{#if @partial-block}}
+    {{> @partial-block}}
+  {{else}}
+    <span>{{text}}</span>
+  {{/if}}
+</div>

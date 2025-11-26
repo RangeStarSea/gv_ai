@@ -1,0 +1,43 @@
+{{!-- Custom Row Widget - 支持参数传递和 Block Partials 插槽 --}}
+<div class="custom_x" flex_width="{{flex_width}}" 
+  {{#if (or space align borderRadius padding border backgroundColor)}}
+    style="{{#if space}}--space: {{space}};{{/if}}
+          {{#if align}} --align: {{align}};{{/if}}
+          {{#if borderRadius}} --radius: {{borderRadius}};{{/if}}
+          {{#if padding}} padding: {{padding}};{{/if}}
+          {{#if border}} border: {{border}};{{/if}}
+          {{#if backgroundColor}} background-color: {{backgroundColor}};{{/if}}"
+  {{/if}}
+>
+  {{#each items}}
+    <div class="x_col"
+      style="{{#if ../itemNum}}--col: {{../itemNum}};{{/if}}
+            {{!-- {{#if align}} --align: {{align}};{{/if}} --}}
+            {{#if style.space}} --space: {{style.space}};{{/if}}
+            {{#if style.borderRadius}} --radius: {{style.borderRadius}};{{/if}}
+            {{#if style.padding}} --padding: {{style.padding}};{{/if}}
+            {{#if style.border}} --border: {{style.border}};{{/if}}
+            {{#if style.backgroundColor}} --backgroundColor: {{style.backgroundColor}};{{/if}}"
+    >
+      <div class="col_item img_hover txt_hover">
+        {{!-- 如果提供了 block 内容（插槽），渲染插槽；否则使用默认内容 --}}
+        {{#if @partial-block}}
+          {{> @partial-block}}
+        {{else}}
+        <p>你好</p>
+          {{!-- 默认模板 --}}
+          {{> partials/custom_img
+              src=this.img
+              alt=this.title
+              width="100%"
+              border="16px"
+              aspectRatio="308/410"
+          }}
+          {{!-- {{> partials/h_txt level=4 text=this.title}} --}}
+          {{> partials/p_txt line=1 font="20px" text=this.title }}
+          {{> partials/span_txt line=2 font="14px" text=this.description }}
+        {{/if}}
+      </div>
+    </div>
+  {{/each}}
+</div>

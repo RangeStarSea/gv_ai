@@ -1,0 +1,568 @@
+<html lang="zh" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>关于我们 - 我的网站</title>
+    <meta name="description" content="我们致力于提供优质的服务" />
+        <link rel="stylesheet" href="css/a1e9767753c2.css" />
+        <link rel="stylesheet" href="css/6f34d9ad7816.css" />
+        <link rel="stylesheet" href="css/eaf9fd97ae9e.css" />
+    <script
+        type="text/javascript"
+        defer
+        src="js/jquery-3.6.0.min.js"
+      ></script>
+      <script>
+        window.__isPhone = () => { return window.innerWidth <= 800 };
+        /**
+        * 节流
+        * @param {} fn 
+        * @param {*} delay 
+        * @returns 
+        */
+        function throttle (fn, delay) {
+            let pre = 0
+            let timer
+            return function () {
+              if (!pre) pre = new Date()
+              let now = new Date()
+              let context = this
+              let args = arguments
+              let remainTime = delay - (now - pre)
+              if (now - pre > delay) {
+                fn.apply(context, args)
+                pre = now
+              } else {
+                if (timer) return
+                timer = setTimeout(() => {
+                  fn.apply(context, args)
+                  pre = now
+                  timer = null
+                }, remainTime)
+              }
+            }
+        }
+        /**
+        * 图片懒加载
+        * 将图片资源赋值给data-src
+        */
+        function lazyloadImg() {
+            const images = document.querySelectorAll('.lazy-img'),
+                  viewHeight = window.innerHeight || docuemnt.documentElement.clientHeight
+            let lazyload = (e) => {
+                for (let i = 0; i < images.length; i++) {
+                    const rect = images[i].getBoundingClientRect()
+                    if (rect.bottom > 0 && rect.bottom - rect.height < viewHeight) {
+                        if(images[i].getAttribute('lazy-status') == 'load') continue;
+                        let dataSrc = images[i].getAttribute('lazy-src')
+                        dataSrc && images[i].setAttribute('src', images[i].getAttribute('lazy-src'))
+                        images[i].setAttribute('lazy-status', 'load')
+                    }
+                }
+            }
+            lazyload()
+            $(window).on('scroll', throttle(lazyload, 100))
+
+        }
+
+        window.__lazyloadImg = lazyloadImg
+      </script>
+  </head>
+  <body>
+    <section style="position: fixed; top: 0; left: 0; width: 100%; z-index: 100;background-color: #fff;">
+      <nav>
+        <a href="/">首页</a>
+        |
+        <a href="/test_service">关于</a>
+        |
+        <a href="/product">product</a>
+        |
+        <a href="/helper">Helpers 演示</a>
+      </nav>
+    </section> 
+
+    <main>
+      <div class="service-page">
+  <main>
+    <section class="page-head">
+      <div class="wal">
+        <div class="-left">
+          <h1 class="title">服务</h1>
+        </div>
+        <div class="-right">
+          <div
+            class="context"
+          >空谷以数字体验平台为核心，业务延伸至数字营销、数字化转型、品牌服务等领域，覆盖品牌官网、商城、培训认证、社区运营、会员管理等多业务场景，为企业提供从前期搭建到后期运营的一站式解决方案。</div>
+        </div>
+      </div>
+    </section>
+    <section class="platform__section">
+      <div class="wal">
+        <div class="-head">
+          <h2 class="sk-section-title"><em>数字体验平台</em></h2>
+          <div class="sk-section-context">空谷数字体验平台 KGU Digital
+            Experience Platform 中国的数字体验平台，是标准化、可组合
+            、可拓展的网站服务场景解决方案</div>
+        </div>
+        <div class="-body">
+          <div class="list">
+            <div
+              class="sk-list"
+              css-gap="0.4, 0.94"
+              css-count="4"
+              css-gap-m="0.4, 0.94"
+              css-count-m="1"
+            >
+              <div class="sk-item text-hover sk0-imgHover">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      lazy-src="images/target/service/img01.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name">品牌官网</div>
+                  <div class="context"><span>CMS内容管理系统</span></div>
+                </a>
+              </div>
+              <div class="sk-item text-hover sk0-imgHover">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      lazy-src="images/target/service/img02.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name">商城/经销商商城/积分商城</div>
+                  <div class="context"><span>B2B/B2C商城系统</span></div>
+                </a>
+              </div>
+              <div class="sk-item text-hover sk0-imgHover">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      lazy-src="images/target/service/img03.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="name"
+                  >经销商培训、考试及认证/安装商培训、考试及认证</div>
+                  <div class="context"><span>B2B/B2C商城系统</span></div>
+                </a>
+              </div>
+              <div class="sk-item text-hover sk0-imgHover">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      lazy-src="images/target/service/img04.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name">在线社区</div>
+                  <div class="context"><span>B2B/B2C商城系统</span></div>
+                </a>
+              </div>
+              <div class="sk-item text-hover sk0-imgHover">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      lazy-src="images/target/service/img05.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name">会员管理</div>
+                  <div class="context"><span>会员系统</span></div>
+                </a>
+              </div>
+              <div class="sk-item text-hover sk0-imgHover">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      lazy-src="images/target/service/img06.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name">新品发布专题、重大活动专题</div>
+                  <div class="context"><span>无代码专题系统</span></div>
+                </a>
+              </div>
+              <div class="sk-item text-hover sk0-imgHover">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      lazy-src="images/target/service/img07.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name">访客行为数据、电商数据</div>
+                  <div class="context"><span>数据分析系统</span></div>
+                </a>
+              </div>
+              <div class="sk-item text-hover sk0-imgHover">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      lazy-src="images/target/service/img08.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="name"
+                  >视频管理、图片管理、文档管理（网站/社媒）</div>
+                  <div class="context"><span>数字资产管理系统</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sk-sticky-layout">
+      <div class="wal">
+        <div class="-head">
+          <h2 class="title sk-section-title"><em>数字营销</em></h2>
+          <div
+            class="context"
+          >技术驱动、大数据支撑、海外运营团队掌舵，实现品牌与业绩双增长</div>
+        </div>
+        <div class="-body">
+          <div class="-left">
+            <div class="-left-box">
+              <ul>
+                <li>
+                  <div class="title">SEO关键词优化</div>
+                  <div class="info">
+                    <div class="group">
+                      <div class="sub-title">网站检测报告</div>
+                      <div
+                        class="context"
+                      >30+项功能检测，全面呈现网站健康情况按钮</div>
+                      <div class="btn-box">
+                        <div class="sk-round-button -black-fill">
+                          <a href="" target="_self" title=""><span
+                            >立即获取</span></a>
+                        </div>
+                        <div class="-link">
+                          <a href="" target="_self" title=""><span
+                            >了解详情</span></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="group">
+                      <div class="sub-title">TraceSpider</div>
+                      <div
+                        class="context"
+                      >一站式智能网站检测工具，集成SEO、GEO与关键词排名监控</div>
+                      <div class="btn-box">
+                        <div class="sk-round-button -black-fill">
+                          <a href="" target="_self" title=""><span
+                            >立即下载</span></a>
+                        </div>
+                        <div class="-link">
+                          <a href="" target="_self" title=""><span
+                            >了解详情</span></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">AI搜索营销（GEO）</div>
+                  <div class="info">
+                    <div class="group">
+                      <div class="sub-title">GEO白皮书</div>
+                      <div
+                        class="context"
+                      >一份面向CMO与营销决策者的战略指南，洞察AI驱动下的营销新格局</div>
+                      <div class="btn-box">
+                        <div class="sk-round-button -black-fill">
+                          <a href="" target="_self" title=""><span
+                            >立即获取</span></a>
+                        </div>
+                        <div class="-link">
+                          <a href="" target="_self" title=""><span
+                            >了解详情</span></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">Google广告投放</div>
+                </li>
+                <li>
+                  <div class="title">海外社交媒体运营</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="-right">
+            <div class="row-container">
+              <div class="img">
+                <img
+                  class="lazy-img"
+                  lazy-src="images/target/find/img501.webp"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="row-container">
+              <div class="img">
+                <img
+                  class="lazy-img"
+                  lazy-src="images/target/find/img502.webp"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="row-container">
+              <div class="img">
+                <img
+                  class="lazy-img"
+                  lazy-src="images/target/find/img503.webp"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="row-container">
+              <div class="img">
+                <img
+                  class="lazy-img"
+                  lazy-src="images/target/find/img503.webp"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="digita__transformation">
+      <div class="wal">
+        <div class="-head">
+          <h2 class="sk-section-title"><em>数字化转型</em></h2>
+        </div>
+        <div class="-body">
+          <div class="list">
+            <div
+              class="sk-list"
+              css-gap="0.4"
+              css-count="2"
+              css-gap-m="0.4"
+              css-count-m="1"
+            >
+              <div class="sk-item">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      theme-display="light"
+                      lazy-src="images/target/service/img101.webp"
+                      alt=""
+                    />
+                    <img
+                      class="lazy-img"
+                      theme-display="dark"
+                      lazy-src="images/target/service/img101.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name-box">
+                    <div class="icon">
+                      <img src="" alt="" />
+                    </div>
+                    <span>面向传统行业</span>
+                  </div>
+                  <div
+                    class="context"
+                  >我们拥有资深咨询、设计、研发、数据、营销的专业人员，我们不仅仅能够提供数字化转型咨询建议，还能与客户一同设计、打造、经营和投资有潜力的数字化项目，通过数字化技术改善客户体验和运营效率，帮助客户实现营收和利润双增长。</div>
+                  <div class="btn-box">
+                    <div class="sk-round-button -black-fill">
+                      <div class="a"><span>探索</span></div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="sk-item">
+                <a href="" target="_self" title="">
+                  <div class="img">
+                    <img
+                      class="lazy-img"
+                      theme-display="light"
+                      lazy-src="images/target/service/img102.webp"
+                      alt=""
+                    />
+                    <img
+                      class="lazy-img"
+                      theme-display="dark"
+                      lazy-src="images/target/service/img102.webp"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name-box">
+                    <div class="icon">
+                      <img src="" alt="" />
+                    </div>
+                    <span>面向IT部门</span>
+                  </div>
+                  <div
+                    class="context"
+                  >我们提供国际化的低代码开发平台作为高效生产工具，支持独立部署，并配备专业人力资源与咨询服务。通过联合研发，我们助力IT团队快速构建数字化系统，共同推动全球数字化转型，实现效率与价值双提升。</div>
+                  <div class="btn-box">
+                    <div class="sk-round-button -black-fill">
+                      <div class="a"><span>探索</span></div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="more__services_G">
+      <div class="wal">
+        <div class="-head">
+          <div class="title">其他服务</div>
+        </div>
+        <div class="-body">
+          <div class="big-box">
+            <div class="content">
+              <div class="tag">品牌服务</div>
+              <div
+                class="title"
+              >引入多媒体技术，采用场景化表现形式，打造沉浸式用户体验，使传播更加直观有效，促进品牌与业绩的双增长</div>
+            </div>
+            <div class="img">
+              <img
+                class="lazy-img"
+                lazy-src="images/target/find/img301.webp"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="small-box">
+            <div
+              class="sk-list"
+              css-gap="0.4"
+              css-count="4"
+              css-gap-m="0.4"
+              css-count-m="1"
+            >
+              <div class="sk-item">
+                <div class="img">
+                  <img
+                    class="lazy-img"
+                    lazy-src="images/target/find/img302.webp"
+                    alt=""
+                  />
+                </div>
+                <div class="name">摄影/摄像</div>
+              </div>
+              <div class="sk-item">
+                <div class="img">
+                  <img
+                    class="lazy-img"
+                    lazy-src="images/target/find/img303.webp"
+                    alt=""
+                  />
+                </div>
+                <div class="name">建模渲染</div>
+              </div>
+              <div class="sk-item">
+                <div class="img">
+                  <img
+                    class="lazy-img"
+                    lazy-src="images/target/find/img304.webp"
+                    alt=""
+                  />
+                </div>
+                <div class="name">动画</div>
+              </div>
+              <div class="sk-item">
+                <div class="img">
+                  <img
+                    class="lazy-img"
+                    lazy-src="images/target/find/img305.webp"
+                    alt=""
+                  />
+                </div>
+                <div class="name">全景VR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    setTimeout(() => { 
+        layoutJs()
+        // 图片懒加载
+    }, 150);
+    function layoutJs() {
+        let list = $('.sk-list')
+        list.each(function() {
+            let _ = $(this),
+            attrs = {
+                gap: _.attr('css-gap') ? _.attr('css-gap').split(',') : [],
+                gap__m: _.attr('css-gap-m') ? _.attr('css-gap-m').split(',') : [],
+                count: _.attr('css-count'),
+                count__m: _.attr('css-count-m'),
+            },
+            attrsJudge = () => {
+                let _attrs = {}
+                if (window.__isPhone()) {
+                    _attrs.count = attrs.count * 1
+                    attrs.count__m != null ? (_attrs.count = attrs.count__m * 1) : (_attrs.count = attrs.count * 1)
+                    if(attrs.gap__m.length > 1) {
+                        _attrs.gapX = attrs.gap__m[0]
+                        _attrs.gapY = attrs.gap__m[1]
+                    } else if(attrs.gap__m.length == 1) {
+                        _attrs.gapX = attrs.gap__m[0]
+                        _attrs.gapY = attrs.gap__m[0]
+                    } else {
+                        _attrs.gapX = attrs.gap[0]
+                        attrs.gap[1] != null ? (_attrs.gapY = attrs.gap[1]) : (_attrs.gapY = attrs.gap[0])
+                    }
+                } else {
+                    _attrs.count = attrs.count * 1
+                    _attrs.gapX = attrs.gap[0]
+                    attrs.gap[1] != null ? (_attrs.gapY = attrs.gap[1]) : (_attrs.gapY = attrs.gap[0])
+                }
+
+                return _attrs
+            },
+            finallyAttrs = attrsJudge()
+
+            _.css({
+                '--gapX': `${Number(finallyAttrs.gapX) || 0}rem`,
+                '--gapY': `${Number(finallyAttrs.gapY || 0)}rem`,
+                '--count': `${finallyAttrs.count || 1}`,
+            })
+        })
+            
+    }
+  </script>
+</div>
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+  <script>
+    setTimeout(() => { 
+      $('body').addClass('show') // 图片懒加载
+      lazyloadImg() 
+    }, 150);
+  </script>
+</html>
+

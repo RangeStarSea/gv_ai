@@ -1,0 +1,128 @@
+{{!-- H Text Widget - 参数：level(1-6,默认3), text*, fontSize, fontWeight, alignment, color, class, style --}}
+{{#if (eq (default level 3) 1)}}
+  <h1
+    {{#if fontSize}} fontSize="{{fontSize}}"{{/if}}
+    {{#if (or color fontWeight alignment padding style)}}
+      style="{{#if color}}--font-color: {{color}};{{/if}}
+            {{#if fontWeight}} font-weight: {{fontWeight}};{{/if}}
+            {{#if alignment}} text-align: {{alignment}};{{/if}}
+            {{#if padding}} padding: {{padding}};{{/if}}
+            {{#if style}} {{style}}{{/if}}"
+    {{/if}}
+    {{#if class}} class="{{class}}"{{/if}}
+  >
+    {{#if @partial-block}}
+      {{> @partial-block}}
+    {{else}}
+      {{text}}
+    {{/if}}
+  </h1>
+{{else if (eq (default level 3) 2)}}
+  <h2
+    {{#if fontSize}} fontSize="{{fontSize}}"{{/if}}
+    {{#if (or color fontWeight alignment padding style)}}
+      style="{{#if color}}--font-color: {{color}};{{/if}}
+            {{#if fontWeight}} font-weight: {{fontWeight}};{{/if}}
+            {{#if alignment}} text-align: {{alignment}};{{/if}}
+            {{#if padding}} padding: {{padding}};{{/if}}
+            {{#if style}} {{style}}{{/if}}"
+    {{/if}}
+    {{#if class}} class="{{class}}"{{/if}}
+  >
+    {{#if @partial-block}}
+      {{> @partial-block}}
+    {{else}}
+      {{text}}
+    {{/if}}
+  </h2>
+{{else if (eq (default level 3) 3)}}
+  <h3
+    {{#if fontSize}} fontSize="{{fontSize}}"{{/if}}
+    {{#if (or color fontWeight alignment padding style)}}
+      style="{{#if color}}--font-color: {{color}};{{/if}}
+            {{#if fontWeight}} font-weight: {{fontWeight}};{{/if}}
+            {{#if alignment}} text-align: {{alignment}};{{/if}}
+            {{#if padding}} padding: {{padding}};{{/if}}
+            {{#if style}} {{style}}{{/if}}"
+    {{/if}}
+    {{#if class}} class="{{class}}"{{/if}}
+  >
+    {{#if @partial-block}}
+      {{> @partial-block}}
+    {{else}}
+      {{text}}
+    {{/if}}
+  </h3>
+{{else if (eq (default level 3) 4)}}
+  <h4
+    {{#if fontSize}} fontSize="{{fontSize}}"{{/if}}
+    {{#if (or color fontWeight alignment padding style)}}
+      style="{{#if color}}--font-color: {{color}};{{/if}}
+            {{#if fontWeight}} font-weight: {{fontWeight}};{{/if}}
+            {{#if alignment}} text-align: {{alignment}};{{/if}}
+            {{#if padding}} padding: {{padding}};{{/if}}
+            {{#if style}} {{style}}{{/if}}"
+    {{/if}}
+    {{#if class}} class="{{class}}"{{/if}}
+  >
+    {{#if @partial-block}}
+      {{> @partial-block}}
+    {{else}}
+      {{text}}
+    {{/if}}
+  </h4>
+{{else if (eq (default level 3) 5)}}
+  <h5
+    {{#if fontSize}} fontSize="{{fontSize}}"{{/if}}
+    {{#if (or color fontWeight alignment padding style)}}
+      style="{{#if color}}--font-color: {{color}};{{/if}}
+            {{#if fontWeight}} font-weight: {{fontWeight}};{{/if}}
+            {{#if alignment}} text-align: {{alignment}};{{/if}}
+            {{#if padding}} padding: {{padding}};{{/if}}
+            {{#if style}} {{style}}{{/if}}"
+    {{/if}}
+    {{#if class}} class="{{class}}"{{/if}}
+  >
+    {{#if @partial-block}}
+      {{> @partial-block}}
+    {{else}}
+      {{text}}
+    {{/if}}
+  </h5>
+{{else if (eq (default level 3) 6)}}
+  <h6
+    {{#if fontSize}} fontSize="{{fontSize}}"{{/if}}
+    {{#if (or color fontWeight alignment padding style)}}
+      style="{{#if color}}--font-color: {{color}};{{/if}}
+            {{#if fontWeight}} font-weight: {{fontWeight}};{{/if}}
+            {{#if alignment}} text-align: {{alignment}};{{/if}}
+            {{#if padding}} padding: {{padding}};{{/if}}
+            {{#if style}} {{style}}{{/if}}"
+    {{/if}}
+    {{#if class}} class="{{class}}"{{/if}}
+  >
+    {{#if @partial-block}}
+      {{> @partial-block}}
+    {{else}}
+      {{text}}
+    {{/if}}
+  </h6>
+{{else}}
+  <h3
+    {{#if fontSize}} fontSize="{{fontSize}}"{{/if}}
+    {{#if (or color fontWeight alignment padding style)}}
+      style="{{#if color}}--font-color: {{color}};{{/if}}
+            {{#if fontWeight}} font-weight: {{fontWeight}};{{/if}}
+            {{#if alignment}} text-align: {{alignment}};{{/if}}
+            {{#if padding}} padding: {{padding}};{{/if}}
+            {{#if style}} {{style}}{{/if}}"
+    {{/if}}
+    {{#if class}} class="{{class}}"{{/if}}
+  >
+    {{#if @partial-block}}
+      {{> @partial-block}}
+    {{else}}
+      {{text}}
+    {{/if}}
+  </h3>
+{{/if}}

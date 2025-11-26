@@ -1,0 +1,102 @@
+<html lang="zh" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{title}} - {{siteName}}</title>
+    <meta name="description" content="{{description}}" />
+    {{#if cssFiles}}
+      {{#each cssFiles}}
+        <link rel="stylesheet" href="{{this}}" />
+      {{/each}}
+    {{else}}
+      <link rel="stylesheet" href="/scss/basic.scss" />
+      <link rel="stylesheet" href="/scss/tx.scss" />
+    {{/if}}
+    <script
+        type="text/javascript"
+        defer
+        src="/js/jquery-3.6.0.min.js"
+      ></script>
+      <script>
+        window.__isPhone = () => { return window.innerWidth <= 800 };
+        /**
+        * 节流
+        * @param {} fn 
+        * @param {*} delay 
+        * @returns 
+        */
+        function throttle (fn, delay) {
+            let pre = 0
+            let timer
+            return function () {
+              if (!pre) pre = new Date()
+              let now = new Date()
+              let context = this
+              let args = arguments
+              let remainTime = delay - (now - pre)
+              if (now - pre > delay) {
+                fn.apply(context, args)
+                pre = now
+              } else {
+                if (timer) return
+                timer = setTimeout(() => {
+                  fn.apply(context, args)
+                  pre = now
+                  timer = null
+                }, remainTime)
+              }
+            }
+        }
+        /**
+        * 图片懒加载
+        * 将图片资源赋值给data-src
+        */
+        function lazyloadImg() {
+            const images = document.querySelectorAll('.lazy-img'),
+                  viewHeight = window.innerHeight || docuemnt.documentElement.clientHeight
+            let lazyload = (e) => {
+                for (let i = 0; i < images.length; i++) {
+                    const rect = images[i].getBoundingClientRect()
+                    if (rect.bottom > 0 && rect.bottom - rect.height < viewHeight) {
+                        if(images[i].getAttribute('lazy-status') == 'load') continue;
+                        let dataSrc = images[i].getAttribute('lazy-src')
+                        dataSrc && images[i].setAttribute('src', images[i].getAttribute('lazy-src'))
+                        images[i].setAttribute('lazy-status', 'load')
+                    }
+                }
+            }
+            lazyload()
+            $(window).on('scroll', throttle(lazyload, 100))
+
+        }
+
+        window.__lazyloadImg = lazyloadImg
+      </script>
+  </head>
+  <body>
+    <section style="position: fixed; top: 0; left: 0; width: 100%; z-index: 100;background-color: #fff;">
+      <nav>
+        <a href="/">首页</a>
+        |
+        <a href="/test_service">关于</a>
+        |
+        <a href="/product">product</a>
+        |
+        <a href="/helper">Helpers 演示</a>
+      </nav>
+    </section> 
+
+    <main>
+      {{{body}}}
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+  <script>
+    setTimeout(() => { 
+      $('body').addClass('show') // 图片懒加载
+      lazyloadImg() 
+    }, 150);
+  </script>
+</html>
+

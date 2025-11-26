@@ -1,0 +1,15 @@
+<section>
+  {{#if productBox}}
+    <div class="wal">
+      {{#each productBox}}
+          {{> render_structured_item this}}
+      {{/each}}
+    </div>
+  {{else}}
+    {{!-- 调试：如果 structuredBox 不存在，显示提示 --}}
+    <div style="padding: 20px; background: #f0f0f0; border: 1px solid #ccc;">
+      <p>⚠️ structuredBox 数据不存在或为空</p>
+      <p>请检查 config/data/index.js 中的 structuredBox 数组是否正确配置</p>
+    </div>
+  {{/if}}
+</section>

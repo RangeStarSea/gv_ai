@@ -1,0 +1,31 @@
+{{! Custom Image Widget - 支持参数传递 }}
+{{! 
+  参数说明：
+  - src: 图片地址（必需）
+  - alt: 图片 alt 文本（可选，默认空）
+  - width: 容器宽度（可选，默认 100%）
+  - aspectRatio: 宽高比（可选，默认 1，格式：y/x，如 16/9 = 1.777）
+}}
+{{!--
+{{> partials/custom_img 
+    src="/images/photo.jpg" 
+    alt="描述文字" 
+    width="300px" 
+    aspectRatio=1.777
+}}
+--}}
+<div class="custom_img" 
+    {{#if (or width borderRadius alignment padding margin backgroundColor)}}
+      style="{{#if width}}--img-width: {{width}};{{/if}}
+            {{#if borderRadius}} --img-border-radius: {{borderRadius}};{{/if}}
+            {{#if alignment}} text-align: {{alignment}};{{/if}}
+            {{#if padding}} padding: {{padding}};{{/if}}
+            {{#if margin}} margin: {{margin}};{{/if}}
+            {{#if border}} border: {{border}};{{/if}}
+            {{#if backgroundColor}} background-color: {{backgroundColor}};{{/if}}"
+    {{/if}}
+>
+  <div class="img" style="--img-ratio: {{default aspectRatio 1}};">
+    <img src="{{src}}" alt="{{default alt ''}}" />
+  </div>
+</div>

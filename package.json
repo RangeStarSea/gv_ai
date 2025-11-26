@@ -1,0 +1,37 @@
+{
+  "name": "gv_ai",
+  "version": "1.0.0",
+  "description": "ai page html hbs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index",
+    "serve:prod": "NODE_ENV=production node index",
+    "gulp": "gulp",
+    "gulp:build": "gulp build --ENV_INFO=build --dev=true --output=dist_build"
+  },
+  "keywords": [
+    "ai",
+    "html"
+  ],
+  "author": "gavin",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^6.1.1",
+    "gulp": "^5.0.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-compile-handlebars": "^0.6.1",
+    "gulp-imagemin": "^9.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^6.0.1",
+    "handlebars": "^4.7.8",
+    "koa": "^3.1.1",
+    "koa-router": "^14.0.0",
+    "koa-static": "^5.0.0",
+    "nodemon": "^3.1.10",
+    "path": "^0.12.7",
+    "postcss": "^8.5.6",
+    "sass": "^1.93.2",
+    "through2": "^4.0.2",
+    "yargs": "^17.7.2"
+  }
+}

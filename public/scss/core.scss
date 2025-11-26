@@ -1,0 +1,121 @@
+/** 高频 */
+// 🥇 1. 块级元素可包含行内元素和部分块级元素	如 <div> 可以包含 <p>、<a>、<span>、<ul> 等。
+// 🥈 2. 行内元素不能包含块级元素	如 <a>、<span> 里不能直接放 <div>、<p>、<h1> 等。
+// 🥉 3. 标签必须正确闭合、不能交叉嵌套	错误：<b><i></b></i> ✅ 正确：<b><i></i></b>
+// 🧱 4. 特定标签有“专属父子关系”	如 <li> 只能放在 <ul> / <ol> 中；<tr> 必须在 <table> 中。
+// 🧩 5. 语义优先、结构清晰	用正确的语义标签嵌套，如 <header> 放 <nav>，不要乱用 <div>。
+
+// p / span / h1~h6 / strong / a / 
+// 块级元素	div, p, h1~h6, ul, ol, li, section, article, aside, header, footer, nav, table, form, figure, blockquote
+// 行内元素	span, a, strong, em, img, br, i, b, small, label, input, select, textarea, abbr, code
+
+$font_size: (
+  "12px": 1.6667,
+  "14px": 1.7143,
+  "16px": 1.75,
+  "18px": 1.7778,
+  "20px": 1.8,
+  "22px": 1.8182,
+  "24px": 1.8333,
+  "26px": 1.8462,
+  "28px": 1.8571,
+  "30px": 1.8667,
+  "32px": 1.875,
+  "34px": 1.8824,
+  "36px": 1.8889,
+  "38px": 1.8947,
+  "40px": 1.9,
+  "48px": 1.3333,
+);
+
+// 字体大小分为 small; default; large 三种形式
+
+$font-sizes:(
+  "56px": 1.94, // h1 标签
+  "24px": 1.8333, // 描述
+
+  "48px": 1.92, // h1 标签
+  "36px": 1.8889, // 标题
+  "18px": 1.7778, // 描述
+
+  "28px": 1.8571, // 标题
+  "16px": 1.75 // 描述
+);
+
+
+
+#x {
+  --gv-br: #ffffff;
+  --gv-brs: #ffffff;
+  --gv-cr: #ffffff;
+  --gv-ff: Arial;
+  --gv-bgc: #ffffff;
+  --gv-gp: 2px;
+
+  /**
+  * 1、字体
+  */
+  .font {
+    font-size: 12px;
+    line-height: 1.6667;
+    color: var(--gv-cr);
+    font-family: var(--gv-ff);
+    text-decoration: underline;
+  }
+
+  /**
+  * 2、边框
+  */
+  .border {
+    border: 1px solid var(--gv-br);
+    border-radius: var(--gv-brs);
+  }
+
+  /**
+  * 3、背景
+  */
+  .background {
+    background-color: var(--gv-bgc);
+  }
+
+  /**
+  * 4、flex布局
+  */
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: column nowrap; // ~ flex-direction:
+    gap: var(--gv-gp);
+    flex-shrink: 0;
+  }
+
+  // object-fit: contain;
+  // opacity: 0;
+  // pointer-events: none;
+  // backdrop-filter: blur(.07rem);
+  // visibility: hidden;
+  // position: sticky; relative absolute
+
+  // -webkit-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
+
+}
+
+/**
+ * 定义动画
+ */
+@keyframes scrollRight {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(100%);
+              transform: translateX(100%);
+    }
+}
+// animation-name: scrollRight;
+// animation-play-state: paused;

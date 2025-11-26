@@ -1,0 +1,12 @@
+<div class="icon-cards">
+  {{#each cards}}
+    <div class="icon-card {{this.color}}">
+      <div class="icon">{{this.icon}}</div>
+      <div class="card-content">
+        <h3>{{this.title}}</h3>
+        <p class="number">{{this.number}}</p>
+        <p class="label">{{this.label}}</p>
+      </div>
+    </div>
+  {{/each}}
+</div>

@@ -1,0 +1,396 @@
+<html lang="zh" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title> - 我的网站</title>
+    <meta name="description" content="" />
+        <link rel="stylesheet" href="css/a1e9767753c2.css" />
+        <link rel="stylesheet" href="css/6f34d9ad7816.css" />
+        <link rel="stylesheet" href="css/eaf9fd97ae9e.css" />
+    <script
+        type="text/javascript"
+        defer
+        src="js/jquery-3.6.0.min.js"
+      ></script>
+      <script>
+        window.__isPhone = () => { return window.innerWidth <= 800 };
+        /**
+        * 节流
+        * @param {} fn 
+        * @param {*} delay 
+        * @returns 
+        */
+        function throttle (fn, delay) {
+            let pre = 0
+            let timer
+            return function () {
+              if (!pre) pre = new Date()
+              let now = new Date()
+              let context = this
+              let args = arguments
+              let remainTime = delay - (now - pre)
+              if (now - pre > delay) {
+                fn.apply(context, args)
+                pre = now
+              } else {
+                if (timer) return
+                timer = setTimeout(() => {
+                  fn.apply(context, args)
+                  pre = now
+                  timer = null
+                }, remainTime)
+              }
+            }
+        }
+        /**
+        * 图片懒加载
+        * 将图片资源赋值给data-src
+        */
+        function lazyloadImg() {
+            const images = document.querySelectorAll('.lazy-img'),
+                  viewHeight = window.innerHeight || docuemnt.documentElement.clientHeight
+            let lazyload = (e) => {
+                for (let i = 0; i < images.length; i++) {
+                    const rect = images[i].getBoundingClientRect()
+                    if (rect.bottom > 0 && rect.bottom - rect.height < viewHeight) {
+                        if(images[i].getAttribute('lazy-status') == 'load') continue;
+                        let dataSrc = images[i].getAttribute('lazy-src')
+                        dataSrc && images[i].setAttribute('src', images[i].getAttribute('lazy-src'))
+                        images[i].setAttribute('lazy-status', 'load')
+                    }
+                }
+            }
+            lazyload()
+            $(window).on('scroll', throttle(lazyload, 100))
+
+        }
+
+        window.__lazyloadImg = lazyloadImg
+      </script>
+  </head>
+  <body>
+    <section style="position: fixed; top: 0; left: 0; width: 100%; z-index: 100;background-color: #fff;">
+      <nav>
+        <a href="/">首页</a>
+        |
+        <a href="/test_service">关于</a>
+        |
+        <a href="/product">product</a>
+        |
+        <a href="/helper">Helpers 演示</a>
+      </nav>
+    </section> 
+
+    <main>
+      <section>
+    <div class="wal">
+                <h2
+                   fontSize="0.48rem"
+                    style="--font-color: #1F1F1F;
+                           font-weight: 600;
+                           text-align: left;
+                           padding: 0 0 0.24rem 0;
+                          "
+                  
+                >
+                    市场部门
+                </h2>
+          
+              <p 
+                class="sis_ft3" 
+                line="2"
+                 fontSize="18px"
+                  style="--font-color: #1F1F1F;
+                         font-weight: 600;
+                         text-align: left;
+                         padding: 0 0 0.50rem 0;
+                        "
+              >
+                    基于ABCD原则，空谷将品牌和营销的关键点融合到客户的网站设计中，实现品牌与业绩双增长
+              </p>
+            
+          <div class="flex_layout" 
+            style="
+            --gap: 20px;
+            --align: ;
+            --wrap: false;
+            --margin: -10px 0px -10px 0px;
+            --negative_space_top_bottom: 0px;
+            --equal: false;
+            "
+          >
+                        <div class="custom_x" flex_width="2" 
+                            style="--space: 20px;
+                                   --align: flex-start;
+                                  
+                                   padding: 0px 0px 0px 0px;
+                                  
+                                   background-color: rgba(245,245,247,0.5564);"
+                        >
+                            <div class="x_col"
+                              style="--col: 2;
+                                    
+                                     --radius: 20px;
+                                     --padding: 30px;
+                                     --border: 1px solid #B5B5B5;
+                                     --backgroundColor: rgba(245,245,247,0.5564);"
+                            >
+                              <div class="col_item img_hover txt_hover">
+                                          <div style="display:none;"></div>
+                                                  <div class="custom_img" 
+                                                        style="--img-width: 36px;
+                                                               --img-border-radius: 0px;
+                                                              
+                                                               padding: 0px 0px 0px 0px;
+                                                               margin: 0px 0px 37px 0px;
+                                                              
+                                                              "
+                                                  >
+                                                    <div class="img" style="--img-ratio: 1;">
+                                                      <img src="images/ico_01.png" alt="图片_你好!" />
+                                                    </div>
+                                                  </div>  
+                                                  <p 
+                                                    class="sis_ft3" 
+                                                    line="1"
+                                                     fontSize="18px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 600;
+                                                             text-align: left;
+                                                             padding: 0px 0px 16px 0px;
+                                                            "
+                                                  >
+                                                        自定义TDK、图片Alt和Title
+                                                  </p>
+                                                  <div class="sis_ft" 
+                                                    line="2"
+                                                     fontSize="14px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 500;
+                                                             text-align: left;
+                                                             padding: 0px 0px 0px 0px;
+                                                            "
+                                                  >
+                                                      <span>灵活自定义全站、栏目、内容页SEO的TDK以及图片Alt和Title</span>
+                                                  </div>
+                              </div>
+                            </div>
+                            <div class="x_col"
+                              style="--col: 2;
+                                    
+                                     --radius: 20px;
+                                     --padding: 30px;
+                                     --border: 1px solid #B5B5B5;
+                                     --backgroundColor: rgba(245,245,247,0.5564);"
+                            >
+                              <div class="col_item img_hover txt_hover">
+                                          <div style="display:none;"></div>
+                                                  <div class="custom_img" 
+                                                        style="--img-width: 36px;
+                                                               --img-border-radius: 0px;
+                                                              
+                                                               padding: 0px 0px 0px 0px;
+                                                               margin: 0px 0px 37px 0px;
+                                                              
+                                                              "
+                                                  >
+                                                    <div class="img" style="--img-ratio: 1;">
+                                                      <img src="images/ico_02.png" alt="" />
+                                                    </div>
+                                                  </div>  
+                                                  <p 
+                                                    class="sis_ft3" 
+                                                    line="1"
+                                                     fontSize="18px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 600;
+                                                             text-align: left;
+                                                             padding: 0px 0px 16px 0px;
+                                                            "
+                                                  >
+                                                        URL重定向
+                                                  </p>
+                                                  <div class="sis_ft" 
+                                                    line="2"
+                                                     fontSize="14px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 500;
+                                                             text-align: left;
+                                                             padding: 0px 0px 0px 0px;
+                                                            "
+                                                  >
+                                                      <span>支持原有URL访问，保障用户的使用体验</span>
+                                                  </div>
+                              </div>
+                            </div>
+                            <div class="x_col"
+                              style="--col: 2;
+                                    
+                                     --radius: 20px;
+                                     --padding: 30px;
+                                     --border: 1px solid #B5B5B5;
+                                     --backgroundColor: rgba(245,245,247,0.5564);"
+                            >
+                              <div class="col_item img_hover txt_hover">
+                                          <div style="display:none;"></div>
+                                                  <div class="custom_img" 
+                                                        style="--img-width: 36px;
+                                                               --img-border-radius: 0px;
+                                                              
+                                                               padding: 0px 0px 0px 0px;
+                                                               margin: 0px 0px 37px 0px;
+                                                              
+                                                              "
+                                                  >
+                                                    <div class="img" style="--img-ratio: 1;">
+                                                      <img src="images/ico_03.png" alt="" />
+                                                    </div>
+                                                  </div>  
+                                                  <p 
+                                                    class="sis_ft3" 
+                                                    line="1"
+                                                     fontSize="18px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 600;
+                                                             text-align: left;
+                                                             padding: 0px 0px 16px 0px;
+                                                            "
+                                                  >
+                                                        SEO自动化
+                                                  </p>
+                                                  <div class="sis_ft" 
+                                                    line="2"
+                                                     fontSize="14px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 500;
+                                                             text-align: left;
+                                                             padding: 0px 0px 0px 0px;
+                                                            "
+                                                  >
+                                                      <span>自动设置A标签内链跳转地址及Title，自动构建网状结构</span>
+                                                  </div>
+                              </div>
+                            </div>
+                            <div class="x_col"
+                              style="--col: 2;
+                                    
+                                     --radius: 20px;
+                                     --padding: 30px;
+                                     --border: 1px solid #B5B5B5;
+                                     --backgroundColor: rgba(245,245,247,0.5564);"
+                            >
+                              <div class="col_item img_hover txt_hover">
+                                          <div style="display:none;"></div>
+                                                  <div class="custom_img" 
+                                                        style="--img-width: 36px;
+                                                               --img-border-radius: 0px;
+                                                              
+                                                               padding: 0px 0px 0px 0px;
+                                                               margin: 0px 0px 37px 0px;
+                                                              
+                                                              "
+                                                  >
+                                                    <div class="img" style="--img-ratio: 1;">
+                                                      <img src="images/ico_04.png" alt="" />
+                                                    </div>
+                                                  </div>  
+                                                  <p 
+                                                    class="sis_ft3" 
+                                                    line="1"
+                                                     fontSize="18px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 600;
+                                                             text-align: left;
+                                                             padding: 0px 0px 16px 0px;
+                                                            "
+                                                  >
+                                                        Sitemap构建与自动提交
+                                                  </p>
+                                                  <div class="sis_ft" 
+                                                    line="2"
+                                                     fontSize="14px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 500;
+                                                             text-align: left;
+                                                             padding: 0px 0px 0px 0px;
+                                                            "
+                                                  >
+                                                      <span>遵循Sitemap协议，自动提交sitemap，增加收录量，提升收录速度，加速提升搜索引擎排名</span>
+                                                  </div>
+                              </div>
+                            </div>
+                        </div>  
+                        <div class="custom_x" flex_width="1" 
+                            style="--space: 20px;
+                                   --align: flex-start;
+                                  
+                                   padding: 0px 0px 0px 0px;
+                                  
+                                   background-color: rgba(245,245,247,0.5564);"
+                        >
+                            <div class="x_col"
+                              style="--col: 1;
+                                    
+                                     --radius: 20px;
+                                     --padding: 30px;
+                                     --border: 1px solid #B5B5B5;
+                                     --backgroundColor: rgba(245,245,247,0.5564);"
+                            >
+                              <div class="col_item img_hover txt_hover">
+                                          <div style="display:none;"></div>
+                                                  <div class="custom_img" 
+                                                        style="--img-width: 36px;
+                                                               --img-border-radius: 0px;
+                                                              
+                                                               padding: 0px 0px 0px 0px;
+                                                               margin: 0px 0px 37px 0px;
+                                                              
+                                                              "
+                                                  >
+                                                    <div class="img" style="--img-ratio: 1;">
+                                                      <img src="images/ico_01.png" alt="" />
+                                                    </div>
+                                                  </div>  
+                                                  <p 
+                                                    class="sis_ft3" 
+                                                    line="1"
+                                                     fontSize="18px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 600;
+                                                             text-align: left;
+                                                             padding: 0px 0px 16px 0px;
+                                                            "
+                                                  >
+                                                        数字营销
+                                                  </p>
+                                                  <div class="sis_ft" 
+                                                    line="5"
+                                                     fontSize="14px"
+                                                      style="--font-color: #1F1F1F;
+                                                             font-weight: 500;
+                                                             text-align: left;
+                                                             padding: 0px 0px 0px 0px;
+                                                            "
+                                                  >
+                                                      <span>线上线下抽奖模块 自动生成展会、产品、营销活动、页面二维码 邮件营销模块 在线调查模块 客户信息进入K-SCRM，驱动二次营销</span>
+                                                  </div>
+                              </div>
+                            </div>
+                        </div>  
+          </div>
+          
+          
+    </div>
+</section>
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+  <script>
+    setTimeout(() => { 
+      $('body').addClass('show') // 图片懒加载
+      lazyloadImg() 
+    }, 150);
+  </script>
+</html>
+

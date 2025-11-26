@@ -1,0 +1,686 @@
+<html lang="zh" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Helpers 演示 - 我的网站</title>
+    <meta name="description" content="展示 Handlebars 自定义 Helpers 的使用" />
+        <link rel="stylesheet" href="css/a1e9767753c2.css" />
+        <link rel="stylesheet" href="css/6f34d9ad7816.css" />
+        <link rel="stylesheet" href="css/eaf9fd97ae9e.css" />
+    <script
+        type="text/javascript"
+        defer
+        src="js/jquery-3.6.0.min.js"
+      ></script>
+      <script>
+        window.__isPhone = () => { return window.innerWidth <= 800 };
+        /**
+        * 节流
+        * @param {} fn 
+        * @param {*} delay 
+        * @returns 
+        */
+        function throttle (fn, delay) {
+            let pre = 0
+            let timer
+            return function () {
+              if (!pre) pre = new Date()
+              let now = new Date()
+              let context = this
+              let args = arguments
+              let remainTime = delay - (now - pre)
+              if (now - pre > delay) {
+                fn.apply(context, args)
+                pre = now
+              } else {
+                if (timer) return
+                timer = setTimeout(() => {
+                  fn.apply(context, args)
+                  pre = now
+                  timer = null
+                }, remainTime)
+              }
+            }
+        }
+        /**
+        * 图片懒加载
+        * 将图片资源赋值给data-src
+        */
+        function lazyloadImg() {
+            const images = document.querySelectorAll('.lazy-img'),
+                  viewHeight = window.innerHeight || docuemnt.documentElement.clientHeight
+            let lazyload = (e) => {
+                for (let i = 0; i < images.length; i++) {
+                    const rect = images[i].getBoundingClientRect()
+                    if (rect.bottom > 0 && rect.bottom - rect.height < viewHeight) {
+                        if(images[i].getAttribute('lazy-status') == 'load') continue;
+                        let dataSrc = images[i].getAttribute('lazy-src')
+                        dataSrc && images[i].setAttribute('src', images[i].getAttribute('lazy-src'))
+                        images[i].setAttribute('lazy-status', 'load')
+                    }
+                }
+            }
+            lazyload()
+            $(window).on('scroll', throttle(lazyload, 100))
+
+        }
+
+        window.__lazyloadImg = lazyloadImg
+      </script>
+  </head>
+  <body>
+    <section style="position: fixed; top: 0; left: 0; width: 100%; z-index: 100;background-color: #fff;">
+      <nav>
+        <a href="/">首页</a>
+        |
+        <a href="/test_service">关于</a>
+        |
+        <a href="/product">product</a>
+        |
+        <a href="/helper">Helpers 演示</a>
+      </nav>
+    </section> 
+
+    <main>
+      <div class="demo-page">
+  <div class="page-header">
+    <h2>🔧 Handlebars Helpers 演示</h2>
+    <p class="description">展示 Handlebars 自定义 Helpers 的使用</p>
+  </div>
+
+  <div class="demo-section">
+    <h3>📅 日期格式化 (formatDate)</h3>
+    <div class="demo-box">
+      <p><strong>完整日期时间：</strong> 2025-11-26 13:09:52</p>
+      <p><strong>仅日期：</strong> 2025-11-26</p>
+      <p><strong>中文格式：</strong> 2025年11月26日</p>
+      <p><strong>用户加入时间：</strong> 2024-01-15</p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>🔤 字符串处理</h3>
+    <div class="demo-box">
+      <p><strong>原文：</strong> 这是一段很长的个人简介文字，用来演示字符串截取功能。Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p><strong>截取 (truncate 50)：</strong> 这是一段很长的个人简介文字，用来演示字符串截取功能。Lorem ipsum dolor sit am...</p>
+      <p><strong>大写 (uppercase)：</strong> JOHN DOE</p>
+      <p><strong>小写 (lowercase)：</strong> john doe</p>
+      <p><strong>首字母大写 (capitalize)：</strong> John doe</p>
+      <p><strong>拼接 (concat)：</strong> 用户：john doe (状态：active)</p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>🔢 数字格式化</h3>
+    <div class="demo-box">
+      <p><strong>用户积分：</strong> 8,567 分</p>
+      <p><strong>总用户数：</strong> 123,456 人</p>
+      <p><strong>总销售额：</strong> ¥9,876,543</p>
+      <p><strong>转化率：</strong> 39%</p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>🔍 条件判断</h3>
+    <div class="demo-box">
+      <p><strong>用户状态 (eq)：</strong> 
+          <span class="badge success">激活中</span>
+      </p>
+      
+      <p><strong>会员状态 (and)：</strong>
+          <span class="badge premium">在线会员</span>
+      </p>
+      
+      <p><strong>三元运算 (ternary)：</strong>
+        <span class="status online">
+          在线
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>🛍️ 商品列表（综合示例）</h3>
+    <div class="products-grid">
+        <div class="product-card  ">
+          <div class="product-number">1</div>
+          <h4>笔记本电脑</h4>
+          <p class="price">¥8,999</p>
+          <p class="desc">高性能笔记本电脑，适合办公和游戏</p>
+          
+            <span class="discount-badge">-15%</span>
+          
+          <div class="product-info">
+            <p><strong>库存：</strong> 25
+            </p>
+            
+            <p><strong>评分：</strong>
+              ⭐⭐⭐⭐⭐
+            </p>
+            
+            <p><strong>发布：</strong> 2025-10-15</p>
+            
+              <span class="tag featured">精选</span>
+              <span class="tag hot">热销</span>
+          </div>
+        </div>
+        <div class="product-card low-stock ">
+          <div class="product-number">2</div>
+          <h4>无线鼠标</h4>
+          <p class="price">¥199</p>
+          <p class="desc">人体工学设计，舒适握持</p>
+          
+          
+          <div class="product-info">
+            <p><strong>库存：</strong> 3
+                  <span class="warning">⚠️ 库存紧张</span>
+            </p>
+            
+            <p><strong>评分：</strong>
+              ⭐⭐⭐⭐
+            </p>
+            
+            <p><strong>发布：</strong> 2025-10-20</p>
+            
+          </div>
+        </div>
+        <div class="product-card low-stock out-of-stock">
+          <div class="product-number">3</div>
+          <h4>机械键盘</h4>
+          <p class="price">¥599</p>
+          <p class="desc">RGB背光机械键盘，青轴手感极佳</p>
+          
+            <span class="discount-badge">-20%</span>
+          
+          <div class="product-info">
+            <p><strong>库存：</strong> 0
+                  <span class="error">❌ 缺货</span>
+            </p>
+            
+            <p><strong>评分：</strong>
+              ⭐⭐⭐⭐⭐
+            </p>
+            
+            <p><strong>发布：</strong> 2025-10-25</p>
+            
+              <span class="tag featured">精选</span>
+          </div>
+        </div>
+        <div class="product-card  ">
+          <div class="product-number">4</div>
+          <h4>显示器</h4>
+          <p class="price">¥2,499</p>
+          <p class="desc">27英寸4K显示器，色彩还原度高</p>
+          
+            <span class="discount-badge">-10%</span>
+          
+          <div class="product-info">
+            <p><strong>库存：</strong> 15
+            </p>
+            
+            <p><strong>评分：</strong>
+              ⭐⭐⭐⭐⭐
+            </p>
+            
+            <p><strong>发布：</strong> 2025-10-28</p>
+            
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>📰 文章列表（数组操作）</h3>
+    <div class="demo-box">
+      <p><strong>总文章数 (length)：</strong> 5 篇</p>
+      <p><strong>最新 3 篇文章 (slice)：</strong></p>
+      
+      <div class="articles-list">
+          <article class="article-item even">
+            <h4>1. Handlebars 入门指南</h4>
+            <p class="content">Handlebars 是一个强大的模板引擎，可以帮助你快速构建动态网页。本文将介绍 Handlebars 的基本使用方法和最佳实践...</p>
+            <div class="meta">
+              <span>作者：Alice wang</span>
+              <span>发布：2025-10-30 10:30</span>
+              <span>阅读：1,234 次</span>
+            </div>
+            <div class="tags">
+                <span class="tag">⭐ 精选</span>
+                <span class="tag">📚 教程</span>
+            </div>
+          </article>
+          <article class="article-item odd">
+            <h4>2. Node.js 性能优化技巧</h4>
+            <p class="content">在构建大型 Node.js 应用时，性能优化是一个重要的话题。本文将分享一些实用的性能优化技巧和工具...</p>
+            <div class="meta">
+              <span>作者：Bob chen</span>
+              <span>发布：2025-10-28 14:20</span>
+              <span>阅读：567 次</span>
+            </div>
+            <div class="tags">
+            </div>
+          </article>
+          <article class="article-item even">
+            <h4>3. CSS Grid 布局完全指南</h4>
+            <p class="content">CSS Grid 是现代网页布局的强大工具。本文将全面介绍 Grid 布局的使用方法，从基础到高级应用...</p>
+            <div class="meta">
+              <span>作者：Carol li</span>
+              <span>发布：2025-10-25 09:00</span>
+              <span>阅读：890 次</span>
+            </div>
+            <div class="tags">
+                <span class="tag">⭐ 精选</span>
+                <span class="tag">📚 教程</span>
+            </div>
+          </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>🔁 循环与奇偶判断</h3>
+    <div class="demo-box">
+      <p><strong>数字列表（奇偶交替样式）：</strong></p>
+      <div class="numbers-grid">
+          <div class="number-box even">
+            10
+            <small>(偶)</small>
+          </div>
+          <div class="number-box odd">
+            25
+            <small>(奇)</small>
+          </div>
+          <div class="number-box even">
+            30
+            <small>(偶)</small>
+          </div>
+          <div class="number-box odd">
+            45
+            <small>(奇)</small>
+          </div>
+          <div class="number-box even">
+            50
+            <small>(偶)</small>
+          </div>
+          <div class="number-box odd">
+            75
+            <small>(奇)</small>
+          </div>
+          <div class="number-box even">
+            90
+            <small>(偶)</small>
+          </div>
+          <div class="number-box even">
+            100
+            <small>(偶)</small>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>📊 数组排序与反转</h3>
+    <div class="demo-box">
+      <p><strong>评分排序 (sort)：</strong></p>
+      <div class="ratings-list">
+          <div class="rating-item">
+            <span>商品C</span>
+            <span>
+              ⭐⭐⭐
+              (89 评价)
+            </span>
+          </div>
+          <div class="rating-item">
+            <span>商品B</span>
+            <span>
+              ⭐⭐⭐⭐
+              (567 评价)
+            </span>
+          </div>
+          <div class="rating-item">
+            <span>商品A</span>
+            <span>
+              ⭐⭐⭐⭐⭐
+              (1,234 评价)
+            </span>
+          </div>
+      </div>
+      
+      <p><strong>颜色列表反转 (reverse)：</strong></p>
+      <div class="colors-list">
+        正序：red, blue, green, yellow, purple
+      </div>
+      <div class="colors-list">
+        倒序：purple, yellow, green, blue, red, 
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>🌐 URL 编码</h3>
+    <div class="demo-box">
+      <p><strong>原始查询：</strong> Node.js &amp; Handlebars</p>
+      <p><strong>编码后：</strong> Node.js%20%26%20Handlebars</p>
+      <p><strong>搜索链接：</strong> <a href="/search?q=Node.js%20%26%20Handlebars">点击搜索</a></p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h3>🛠️ 其他功能</h3>
+    <div class="demo-box">
+      <p><strong>默认值 (default)：</strong> 匿名用户</p>
+      <p><strong>数学运算 (subtract)：</strong> 5 - 2 = 3</p>
+      <p><strong>JSON 输出 (json)：</strong></p>
+      <pre><code>{
+  &quot;name&quot;: &quot;john doe&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;isPremium&quot;: true,
+  &quot;isOnline&quot;: true,
+  &quot;joinDate&quot;: &quot;2024-01-15T08:30:00&quot;,
+  &quot;score&quot;: 8567,
+  &quot;bio&quot;: &quot;这是一段很长的个人简介文字，用来演示字符串截取功能。Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&quot;
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="demo-footer">
+    <p>✅ 以上演示了 32 个自定义 Helpers 的使用方法</p>
+    <p>📚 查看 <a href="/HELPERS.md">HELPERS.md</a> 了解更多</p>
+  </div>
+</div>
+
+<style>
+.demo-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.demo-section {
+  margin: 30px 0;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.demo-section h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 10px;
+}
+
+.demo-box {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.demo-box p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: bold;
+  background: #ddd;
+  color: #666;
+}
+
+.badge.success {
+  background: #4CAF50;
+  color: white;
+}
+
+.badge.premium {
+  background: #FF9800;
+  color: white;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.status.online {
+  background: #4CAF50;
+  color: white;
+}
+
+.status.offline {
+  background: #999;
+  color: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background: white;
+  position: relative;
+}
+
+.product-card.low-stock {
+  border-color: #FF9800;
+}
+
+.product-card.out-of-stock {
+  opacity: 0.6;
+  border-color: #f44336;
+}
+
+.product-number {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: #2196F3;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.product-card h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.price {
+  font-size: 1.5em;
+  color: #f44336;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.discount-badge {
+  background: #f44336;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.product-info p {
+  margin: 8px 0;
+  font-size: 0.9em;
+}
+
+.warning {
+  color: #FF9800;
+  font-weight: bold;
+}
+
+.error {
+  color: #f44336;
+  font-weight: bold;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 8px;
+  margin: 2px;
+  border-radius: 3px;
+  font-size: 0.85em;
+  background: #e0e0e0;
+}
+
+.tag.featured {
+  background: #4CAF50;
+  color: white;
+}
+
+.tag.hot {
+  background: #f44336;
+  color: white;
+}
+
+.articles-list {
+  margin-top: 15px;
+}
+
+.article-item {
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.article-item.even {
+  background: #f0f8ff;
+}
+
+.article-item.odd {
+  background: #fff8f0;
+}
+
+.article-item h4 {
+  margin: 0 0 10px 0;
+  color: #2196F3;
+}
+
+.article-item .content {
+  color: #666;
+  line-height: 1.6;
+}
+
+.article-item .meta {
+  margin: 10px 0;
+  font-size: 0.9em;
+  color: #999;
+}
+
+.article-item .meta span {
+  margin-right: 15px;
+}
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.number-box {
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.number-box.even {
+  background: #E3F2FD;
+  color: #1976D2;
+}
+
+.number-box.odd {
+  background: #FFF3E0;
+  color: #F57C00;
+}
+
+.number-box small {
+  display: block;
+  font-size: 0.6em;
+  margin-top: 5px;
+  font-weight: normal;
+}
+
+.ratings-list {
+  margin: 10px 0;
+}
+
+.rating-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px 0;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.colors-list {
+  padding: 10px;
+  background: white;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+pre {
+  background: #263238;
+  color: #aed581;
+  padding: 15px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.demo-footer {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f0f8ff;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.demo-footer p {
+  margin: 10px 0;
+}
+
+.demo-footer a {
+  color: #2196F3;
+  text-decoration: none;
+  font-weight: bold;
+}
+</style>
+
+
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+  <script>
+    setTimeout(() => { 
+      $('body').addClass('show') // 图片懒加载
+      lazyloadImg() 
+    }, 150);
+  </script>
+</html>
+

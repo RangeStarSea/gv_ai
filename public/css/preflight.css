@@ -1,0 +1,392 @@
+/*
+  1. 防止内边距和边框影响元素宽度。 (https://github.com/mozdevs/cssremedy/issues/4)
+  2. 移除默认的外边距和内边距
+  3. 重置所有边框。
+*/
+
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+  box-sizing: border-box; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 2 */
+  border: 0 solid; /* 3 */
+}
+
+/*
+  1. 在所有浏览器中使用一致且合理的行高。
+  2. 防止 iOS 中方向改变后字体大小的调整。
+  3. 使用更易读的制表符大小。
+  4. 默认使用用户配置的 `sans` 字体族。
+  5. 默认使用用户配置的 `sans` 字体特性设置。
+  6. 默认使用用户配置的 `sans` 字体变体设置。
+  7. 在 iOS 上禁用点击高亮。
+*/
+
+html,
+:host {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  tab-size: 4; /* 3 */
+  font-family: --theme(
+    --default-font-family,
+    ui-sans-serif,
+    system-ui,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji'
+  ); /* 4 */
+  font-feature-settings: --theme(--default-font-feature-settings, normal); /* 5 */
+  font-variation-settings: --theme(--default-font-variation-settings, normal); /* 6 */
+  -webkit-tap-highlight-color: transparent; /* 7 */
+}
+
+/*
+  1. 在 Firefox 中添加正确的高度。
+  2. 修正 Firefox 中边框颜色的继承。 (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+  3. 将默认边框样式重置为 1px 实心边框。
+*/
+
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+  在 Chrome、Edge 和 Safari 中添加正确的文本装饰。
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+
+/*
+  移除标题的默认字体大小和粗细。
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+  重置链接样式，优化为主动选择样式而非被动取消样式。
+*/
+
+a {
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
+}
+
+/*
+  在 Edge 和 Safari 中添加正确的字体粗细。
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+  1. 默认使用用户配置的 `mono` 字体族。
+  2. 默认使用用户配置的 `mono` 字体特性设置。
+  3. 默认使用用户配置的 `mono` 字体变体设置。
+  4. 修正所有浏览器中奇怪的 `em` 字体大小。
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: --theme(
+    --default-mono-font-family,
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    'Liberation Mono',
+    'Courier New',
+    monospace
+  ); /* 1 */
+  font-feature-settings: --theme(--default-mono-font-feature-settings, normal); /* 2 */
+  font-variation-settings: --theme(--default-mono-font-variation-settings, normal); /* 3 */
+  font-size: 1em; /* 4 */
+}
+
+/*
+  在所有浏览器中添加正确的字体大小。
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+  防止 `sub` 和 `sup` 元素在所有浏览器中影响行高。
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+  1. 移除 Chrome 和 Safari 中表格内容的文本缩进。 (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+  2. 修正 Chrome 和 Safari 中表格边框颜色的继承。 (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+  3. 默认移除表格边框之间的间隙。
+*/
+
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+  为所有可聚焦元素使用现代 Firefox 焦点样式。
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+  在 Chrome 和 Firefox 中添加正确的垂直对齐。
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+  在 Chrome 和 Safari 中添加正确的显示方式。
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+  默认使列表无样式。
+*/
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+/*
+  1. 默认使替换元素 `display: block`。 (https://github.com/mozdevs/cssremedy/issues/14)
+  2. 添加 `vertical-align: middle` 以更合理地默认对齐替换元素。 (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+     这可能会在某些工具中触发考虑不周的 lint 错误，但这是有意设计的。
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+  将图片和视频限制在父元素宽度内，并保持其固有宽高比。 (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+  1. 在所有浏览器中继承字体样式。
+  2. 在所有浏览器中移除边框圆角。
+  3. 在所有浏览器中移除背景颜色。
+  4. 确保所有浏览器中禁用状态的一致透明度。
+*/
+
+button,
+input,
+select,
+optgroup,
+textarea,
+::file-selector-button {
+  font: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  letter-spacing: inherit; /* 1 */
+  color: inherit; /* 1 */
+  border-radius: 0; /* 2 */
+  background-color: transparent; /* 3 */
+  opacity: 1; /* 4 */
+}
+
+/*
+  恢复默认字体粗细。
+*/
+
+:where(select:is([multiple], [size])) optgroup {
+  font-weight: bolder;
+}
+
+/*
+  恢复缩进。
+*/
+
+:where(select:is([multiple], [size])) optgroup option {
+  padding-inline-start: 20px;
+}
+
+/*
+  恢复按钮后的间距。
+*/
+
+::file-selector-button {
+  margin-inline-end: 4px;
+}
+
+/*
+  重置 Firefox 中默认占位符透明度。 (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+*/
+
+::placeholder {
+  opacity: 1;
+}
+
+/*
+  将默认占位符颜色设置为当前文本颜色的半透明版本，适用于使用 `color-mix(…)` 和 `currentcolor` 不会崩溃的浏览器。 (https://github.com/tailwindlabs/tailwindcss/issues/17194)
+*/
+
+@supports (not (-webkit-appearance: -apple-pay-button)) /* 非 Safari */ or
+  (contain-intrinsic-size: 1px) /* Safari 17+ */ {
+  ::placeholder {
+    color: color-mix(in oklab, currentcolor 50%, transparent);
+  }
+}
+
+/*
+  默认防止文本区域水平调整大小。
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+  在 macOS 上的 Chrome 和 Safari 中移除内部内边距。
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+  1. 确保 iOS Safari 中空日期/时间输入框具有相同的高度。
+  2. 确保可以在 iOS Safari 中更改日期/时间输入框的文本对齐方式。
+*/
+
+::-webkit-date-and-time-value {
+  min-height: 1lh; /* 1 */
+  text-align: inherit; /* 2 */
+}
+
+/*
+  当输入框设置为 `display: block` 时，防止 macOS Safari 中日期/时间输入框的高度改变。
+*/
+
+::-webkit-datetime-edit {
+  display: inline-flex;
+}
+
+/*
+  从日期/时间输入框的伪元素中移除多余的内边距，确保跨浏览器的一致高度。
+*/
+
+::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+::-webkit-datetime-edit,
+::-webkit-datetime-edit-year-field,
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-hour-field,
+::-webkit-datetime-edit-minute-field,
+::-webkit-datetime-edit-second-field,
+::-webkit-datetime-edit-millisecond-field,
+::-webkit-datetime-edit-meridiem-field {
+  padding-block: 0;
+}
+
+/*
+  在 Chrome 中居中显示带有配对 `<datalist>` 的输入框的下拉标记。 (https://github.com/tailwindlabs/tailwindcss/issues/18499)
+*/
+
+::-webkit-calendar-picker-indicator {
+  line-height: 1;
+}
+
+/*
+  移除 Firefox 中额外的 `:invalid` 样式。 (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+  修正 iOS Safari 中无法设置边框圆角的问题。
+*/
+
+button,
+input:where([type='button'], [type='reset'], [type='submit']),
+::file-selector-button {
+  appearance: button;
+}
+
+/*
+  修正 Safari 中增减按钮的光标样式。
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+  使带有 HTML hidden 属性的元素默认保持隐藏。
+*/
+
+[hidden]:where(:not([hidden='until-found'])) {
+  display: none !important;
+}

@@ -1,0 +1,26 @@
+{{!-- Flex Layout Widget - 根据子元素数量自动左右布局
+  参数说明：
+  - gap: 间距（默认 20px）
+  - align: 对齐方式（默认 flex-start，可选：flex-start | center | flex-end | stretch）
+  - direction: 布局方向（默认 row，可选：row | column）
+  - wrap: 是否换行（默认 true）
+  - equal: 是否等宽（默认 false，设为 true 时所有子元素等宽）
+  - class: 自定义 class（可选：left-right | right-left）
+--}}
+<div class="flex_layout{{#if class}} {{class}}{{/if}}" 
+  style="
+  --gap: {{gap}};
+  --align: {{align}};
+  --wrap: {{default wrap 'true'}};
+  --margin: {{margin}};
+  --negative_space_top_bottom: {{default negativeSpaceTopBottom '0px'}};
+  --equal: {{#if (eq equal 'true')}}true{{else}}false{{/if}};
+  "
+>
+  {{#if @partial-block}}
+    {{> @partial-block}}
+  {{else}}
+    <p>No content provided</p>
+  {{/if}}
+</div>
+

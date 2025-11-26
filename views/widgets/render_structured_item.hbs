@@ -1,0 +1,104 @@
+{{!-- 递归渲染 structured item --}}
+{{#if (eq type "partial")}}
+  {{!-- 渲染 partials 组件 --}}
+  {{#if (eq componentPositioning "partials/h_txt")}}
+    {{!-- h_txt 组件 --}}
+    {{> partials/h_txt 
+        text=content
+        level=style.level
+        fontSize=style.fontSize
+        color=style.fontColor
+        fontWeight=style.fontWeight
+        alignment=style.alignment
+        padding=style.padding
+        style=""
+    }}
+  {{else if (eq componentPositioning "partials/p_txt")}}
+    {{!-- p_txt 组件 --}}
+    {{> partials/p_txt 
+        text=content
+        line=style.line
+        fontSize=style.fontSize
+        color=style.fontColor
+        fontWeight=style.fontWeight
+        alignment=style.alignment
+        padding=style.padding
+        style=""
+    }}
+  {{else if (eq componentPositioning "partials/span_txt")}}
+    {{!-- span_txt 组件 --}}
+    {{> partials/span_txt 
+        text=content
+        line=style.line
+        fontSize=style.fontSize
+        color=style.fontColor
+        fontWeight=style.fontWeight
+        alignment=style.alignment
+        padding=style.padding
+        style=""
+    }}
+  {{else if (eq componentPositioning "partials/custom_img")}}
+    {{!-- custom_img 组件 --}}
+    {{> partials/custom_img
+        src=content
+        width=style.width
+        borderRadius=style.borderRadius
+        aspectRatio=(parseAspectRatio style.aspectRatio)
+        padding=style.padding
+        margin=style.margin
+        border=style.border
+        alt=attr.alt
+    }}
+  {{/if}}
+{{else if (eq type "widgets")}}
+  {{!-- 渲染 widgets 组件 --}}
+  {{#if (eq componentPositioning "flex_layout")}}
+    {{!-- flex_layout 组件 --}}
+    {{#> flex_layout 
+        gap=style.gap
+        margin=style.margin
+        num=style.num
+        wrap=style.wrap
+        equal=style.equal
+        negativeSpaceTopBottom=negativeSpaceTopBottom
+    }}
+      {{!-- 递归渲染 children --}}
+      {{#if children}}
+        {{#each children}}
+          {{!-- {{#json this.remark}}{{/json}}
+          <p>++++++++++++++++++++++++++++++++++++</p> --}}
+          {{> render_structured_item this}}
+        {{/each}}
+      {{else}}
+        <!-- 调试：flex_layout 的 children 为空 -->
+      {{/if}}
+    {{/flex_layout}}
+  {{else if (eq componentPositioning "custom_row")}}
+    {{!-- custom_row 组件 --}}
+    {{#if children}}
+      {{!-- 直接传递 children 数组给 custom_row，不需要循环 --}}
+        {{!-- {{#json style}}{{/json}} --}}
+      {{#> custom_row 
+        items=children
+        flex_width=style.flex_width
+        space=style.space
+        align=style.align
+        borderRadius=style.borderRadius
+        padding=style.padding
+        border=style.border
+        backgroundColor=style.backgroundColor
+        itemNum=style.itemNum
+      }}
+        {{!-- 在 custom_row 的 block partial 中，this 指向每个 item --}}
+        {{!-- 递归渲染每个 item 的 children（图片、标题、描述） --}}
+        <div style="display:none;"></div>
+        {{#if this.children}}
+          {{#each this.children}}
+            {{> render_structured_item this}}
+          {{/each}}
+        {{/if}}
+      {{/custom_row}}
+    {{/if}}
+  {{/if}}
+{{/if}}
+
