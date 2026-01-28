@@ -281,11 +281,6 @@
   line-clamp: 3;
   max-height: 5.0001em;
 }
-.sis_ft[fontSize="12px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 6.6668em;
-}
 .sis_ft[fontSize="14px"][line="1"] {
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -300,11 +295,6 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   max-height: 5.1429em;
-}
-.sis_ft[fontSize="14px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 6.8572em;
 }
 .sis_ft[fontSize="16px"][line="1"] {
   -webkit-line-clamp: 1;
@@ -321,11 +311,6 @@
   line-clamp: 3;
   max-height: 5.25em;
 }
-.sis_ft[fontSize="16px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7em;
-}
 .sis_ft[fontSize="18px"][line="1"] {
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -340,11 +325,6 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   max-height: 5.3334em;
-}
-.sis_ft[fontSize="18px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.1112em;
 }
 .sis_ft[fontSize="20px"][line="1"] {
   -webkit-line-clamp: 1;
@@ -361,11 +341,6 @@
   line-clamp: 3;
   max-height: 5.4em;
 }
-.sis_ft[fontSize="20px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.2em;
-}
 .sis_ft[fontSize="22px"][line="1"] {
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -380,11 +355,6 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   max-height: 5.4546em;
-}
-.sis_ft[fontSize="22px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.2728em;
 }
 .sis_ft[fontSize="24px"][line="1"] {
   -webkit-line-clamp: 1;
@@ -401,11 +371,6 @@
   line-clamp: 3;
   max-height: 5.4999em;
 }
-.sis_ft[fontSize="24px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.3332em;
-}
 .sis_ft[fontSize="26px"][line="1"] {
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -420,11 +385,6 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   max-height: 5.5386em;
-}
-.sis_ft[fontSize="26px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.3848em;
 }
 .sis_ft[fontSize="28px"][line="1"] {
   -webkit-line-clamp: 1;
@@ -441,11 +401,6 @@
   line-clamp: 3;
   max-height: 5.5713em;
 }
-.sis_ft[fontSize="28px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.4284em;
-}
 .sis_ft[fontSize="30px"][line="1"] {
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -460,11 +415,6 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   max-height: 5.6001em;
-}
-.sis_ft[fontSize="30px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.4668em;
 }
 .sis_ft[fontSize="32px"][line="1"] {
   -webkit-line-clamp: 1;
@@ -481,11 +431,6 @@
   line-clamp: 3;
   max-height: 5.625em;
 }
-.sis_ft[fontSize="32px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.5em;
-}
 .sis_ft[fontSize="34px"][line="1"] {
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -500,11 +445,6 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   max-height: 5.6472em;
-}
-.sis_ft[fontSize="34px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.5296em;
 }
 .sis_ft[fontSize="36px"][line="1"] {
   -webkit-line-clamp: 1;
@@ -521,11 +461,6 @@
   line-clamp: 3;
   max-height: 5.6667em;
 }
-.sis_ft[fontSize="36px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.5556em;
-}
 .sis_ft[fontSize="38px"][line="1"] {
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -540,11 +475,6 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   max-height: 5.6841em;
-}
-.sis_ft[fontSize="38px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.5788em;
 }
 .sis_ft[fontSize="40px"][line="1"] {
   -webkit-line-clamp: 1;
@@ -561,11 +491,6 @@
   line-clamp: 3;
   max-height: 5.7em;
 }
-.sis_ft[fontSize="40px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 7.6em;
-}
 .sis_ft[fontSize="48px"][line="1"] {
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -580,11 +505,6 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   max-height: 3.9999em;
-}
-.sis_ft[fontSize="48px"][line="4"] {
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  max-height: 5.3332em;
 }
 
 .col_border {

@@ -88,6 +88,7 @@ $font-sizes: (
     }
   }
 }
+
 // 这个class为控制文本行数
 .sis_ft {
   // 文本截断基础样式
@@ -120,13 +121,6 @@ $font-sizes: (
         -webkit-line-clamp: 3;
         line-clamp: 3;
         max-height: #{($line-height * 3)}em;
-      }
-
-      // 4行
-      &[line="4"] {
-        -webkit-line-clamp: 4;
-        line-clamp: 4;
-        max-height: #{($line-height * 4)}em;
       }
     }
   }
